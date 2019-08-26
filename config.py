@@ -11,7 +11,7 @@ import numpy as np
 # validate_input_dir = "reduced_input"
 # validate_output_dir = "reduced_output"
 
-data_folder = "data/train_test"
+data_folder = "data/"
 train_input_dir = "train_input"
 train_output_dir = "train_output"
 test_input_dir = "test_input"
