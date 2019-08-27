@@ -10,6 +10,7 @@ import functions
 
 [model, saved_epoch] = functions.recov_from_ckpt()
 
+# Initialize data loader
 validate_dataset = classes.ImageDataset(
     data_folder=cfg.data_folder, 
     input_dir=cfg.validate_input_dir, 
