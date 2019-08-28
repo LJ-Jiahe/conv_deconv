@@ -33,7 +33,7 @@ recov_from_ckpt = False
 ckpt_folder = "checkpoints"
 
 # Training parameters
-num_epochs = 10
+num_epochs = 50
 train_batch_size = 1
 test_batch_size = 1
 criterion = nn.MSELoss()
