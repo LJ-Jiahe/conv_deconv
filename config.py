@@ -2,15 +2,8 @@ from torchvision import transforms
 from torch import nn
 import numpy as np
 
-# Directories
-# data_folder = "data/original"
-# train_input_dir = "reduced_input"
-# train_output_dir = "reduced_output"
-# test_input_dir = "reduced_input"
-# test_output_dir = "reduced_output"
-# validate_input_dir = "reduced_input"
-# validate_output_dir = "reduced_output"
 
+# Directories
 data_folder = "data/"
 train_input_dir = "train_input"
 train_output_dir = "train_output"
@@ -18,14 +11,11 @@ test_input_dir = "test_input"
 test_output_dir = "test_output"
 validate_input_dir = "test_input"
 validate_output_dir = "test_output"
-
-
 loss_folder = "loss"
 
 # Dataset
 transform = transforms.Compose([
     transforms.ToTensor()])
-    
 num_workers = 4
 
 # Model
@@ -59,13 +49,13 @@ lr_gamma = 0.1
 # ])
 
 upsampling = np.array([
-   [1, 16, 4, 2, 0],
-   [16, 64, 5, 2, 0],
-   [64, 256, 3, 1, 0]
+   [1, 64, 4, 2, 0],
+   [64, 256, 5, 2, 0],
+   [256, 1024, 3, 1, 0]
 ])
 
 downsampling = np.array([
-   [256, 64, 3, 1, 0],
-   [64, 16, 5, 2, 0],
-   [16, 1, 4, 2, 0]
+   [1024, 256, 3, 1, 0],
+   [256, 64, 5, 2, 0],
+   [64, 1, 4, 2, 0]
 ])

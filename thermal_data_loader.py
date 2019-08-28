@@ -37,8 +37,8 @@ class Thermal_RGB(Dataset):
         """.
         """
         self.root_dir = root_dir
-        thermal_dir   = os.listdir(os.path.join(root_dir, 'thermal'))
-        rgb_dir = os.listdir(os.path.join(root_dir, 'rgb'))
+        thermal_dir   = os.listdir(os.path.join(root_dir, 'thermal_1'))
+        rgb_dir = os.listdir(os.path.join(root_dir, 'rgb_1'))
         self.images = [name.strip('.TIFF') for name in thermal_dir]
 
     def __len__(self):
@@ -47,12 +47,12 @@ class Thermal_RGB(Dataset):
     def __getitem__(self, idx):
 
 
-        image = cv2.imread(os.path.join(os.path.join(self.root_dir, 'thermal'), self.images[idx]+'.TIFF'), -1)
-        label = cv2.imread(os.path.join(os.path.join(self.root_dir, 'rgb'), self.images[idx]+'_8b.JPG'))
-        label = scale_rgb(label)    
-        image, label = image / (2**14), label / 255
+        thermal_img = cv2.imread(os.path.join(os.path.join(self.root_dir, 'thermal'), self.images[idx]+'.TIFF'), -1)
+        rgb_img = cv2.imread(os.path.join(os.path.join(self.root_dir, 'rgb'), self.images[idx]+'_8b.JPG'))
+        rgb_img = scale_rgb(rgb_img)
+        thermal_img, rgb_img = thermal_img / (2**14), rgb_img / 255
 
-        sample = {'input_image': image[np.newaxis, ...], 'output_image': label[np.newaxis, ...]}
+        sample = {'input_image': thermal_img[np.newaxis, ...], 'output_image': thermal_img[np.newaxis, ...]}
 
         return sample
 

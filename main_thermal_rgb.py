@@ -20,17 +20,6 @@ import thermal_data_loader
 # All parameters are assigned in "config.py"
 
 # Initialize dataset for train and test data
-# train_dataset = classes.ImageDataset(
-#     data_folder=cfg.data_folder, 
-#     input_dir=cfg.train_input_dir, 
-#     output_dir=cfg.train_output_dir, 
-#     transform=cfg.transform)
-
-# test_dataset = classes.ImageDataset(
-#     data_folder=cfg.data_folder, 
-#     input_dir=cfg.test_input_dir, 
-#     output_dir=cfg.test_output_dir, 
-#     transform=cfg.transform)
 train_dataset = thermal_data_loader.Thermal_RGB(cfg.data_folder)
 test_dataset = thermal_data_loader.Thermal_RGB(cfg.data_folder)
 
@@ -39,7 +28,6 @@ train_loader = torch.utils.data.DataLoader(
     dataset=train_dataset,
     batch_size=cfg.train_batch_size,
     shuffle=True)
-
 test_loader = torch.utils.data.DataLoader(
     dataset=test_dataset,
     batch_size=cfg.test_batch_size,
@@ -132,5 +120,3 @@ for epoch in range(saved_epoch_idx + 1, saved_epoch_idx + 1 + cfg.num_epochs):
         print("\nmodel saved at epoch : " + str(epoch) + "\n")
     
 #    scheduler.step() #Decrease learning rate
-
-
