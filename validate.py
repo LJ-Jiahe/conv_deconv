@@ -8,16 +8,16 @@ import matplotlib.pyplot as plt
 import functions
 import thermal_data_loader
 
+
 [model, saved_epoch] = functions.recov_from_ckpt()
 
 # Initialize data loader
-#validate_dataset = classes.ImageDataset(
-#    data_folder=cfg.data_folder, 
-#    input_dir=cfg.validate_input_dir, 
-#    output_dir=cfg.validate_output_dir, 
-#    transform=cfg.transform)
+# validate_dataset = classes.ImageDataset(
+#     data_folder=cfg.data_folder, 
+#     input_dir=cfg.validate_input_dir, 
+#     output_dir=cfg.validate_output_dir, 
+#     transform=cfg.transform)
 validate_dataset = thermal_data_loader.Thermal_RGB(cfg.data_folder)
-
 validate_data_loader = torch.utils.data.DataLoader(
     dataset=validate_dataset, 
     batch_size=1, 
@@ -44,5 +44,5 @@ for ite, datapoint in enumerate(validate_data_loader):
     rows = 1
     for i in range(columns * rows):
         fig.add_subplot(rows, columns, i+1)
-        plt.imshow(imgs[i])
+        plt.imshow(imgs[i][:, :, 0])
     plt.show()

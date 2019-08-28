@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-from torch.autograd import Variable
 import config as cfg
 from torch.utils.data import Dataset
 import os

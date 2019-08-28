@@ -49,7 +49,7 @@ class Thermal_RGB(Dataset):
 
         image = cv2.imread(os.path.join(os.path.join(self.root_dir, 'thermal'), self.images[idx]+'.TIFF'), -1)
         label = cv2.imread(os.path.join(os.path.join(self.root_dir, 'rgb'), self.images[idx]+'_8b.JPG'))
-        label = scale_rgb(label)
+        label = scale_rgb(label)    
         image, label = image / (2**14), label / 255
 
         sample = {'input_image': image[np.newaxis, ...], 'output_image': label[np.newaxis, ...]}
