@@ -59,3 +59,7 @@ downsampling = np.array([
    [256, 64, 5, 2, 0],
    [64, 1, 4, 2, 0]
 ])
+
+# Resize: 512, 512
+# Normalization: Zero-Mean / Std [-1, 1]
+# Normalization: Zero-Mean

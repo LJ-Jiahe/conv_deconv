@@ -76,8 +76,9 @@ class Downsamp_Upsamp_Net(nn.Module):
             kernel_size=cfg.downsampling[2, 2],
             stride=cfg.downsampling[2, 3],
             padding=cfg.downsampling[2, 4])
+        
         nn.init.xavier_uniform_(self.deconv3.weight)
-        self.ac_fun6 = nn.ReLU()
+        self.ac_fun6 = nn.Sigmoid()
 
     def forward(self,x):
         out = self.conv1(x)
@@ -98,7 +99,7 @@ class Downsamp_Upsamp_Net(nn.Module):
         out = self.ac_fun5(out)
         # out = self.maxunpool2(out,indices1,size1)
         out = self.deconv3(out)
-        out = self.ac_fun6(out)
+        #out = self.ac_fun6(out)
         return(out)
 
 
