@@ -40,19 +40,22 @@ class Thermal_RGB(Dataset):
         thermal_dir   = os.listdir(os.path.join(root_dir, 'thermal_1'))
         rgb_dir = os.listdir(os.path.join(root_dir, 'rgb_1'))
         self.images = [name.strip('.TIFF') for name in thermal_dir]
+        self.transform = transform
 
     def __len__(self):
         return len(self.images)
 
     def __getitem__(self, idx):
 
-
         thermal_img = cv2.imread(os.path.join(os.path.join(self.root_dir, 'thermal'), self.images[idx]+'.TIFF'), -1)
         rgb_img = cv2.imread(os.path.join(os.path.join(self.root_dir, 'rgb'), self.images[idx]+'_8b.JPG'))
         rgb_img = scale_rgb(rgb_img)
-        thermal_img, rgb_img = thermal_img / (2**14), rgb_img / 255
+        # thermal_img, rgb_img = thermal_img / (2**14), rgb_img / 255
+        thermal_img = (thermal_img - np.mean(thermal_img)) / np.std(thermal_img)
+        rgb_img = (rgb_img - np.mean(rgb_img)) / np.std(rgb_img)
 
-        sample = {'input_image': thermal_img[np.newaxis, ...], 'output_image': thermal_img[np.newaxis, ...]}
+        sample = {'input_image': rgb_img[np.newaxis, ...], 'output_image': thermal_img[np.newaxis, ...]}
+        print(sample['input_image'].shape)
 
         return sample
 

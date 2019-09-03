@@ -44,25 +44,22 @@ for ite, datapoint in enumerate(validate_data_loader):
 
     validate_output_batch = model(validate_input_batch)
 
-    print(validate_output_batch)
-    input()
-
     validate_input_img = validate_input_batch[0].data.numpy().transpose((1, 2, 0))
     validate_target_img = validate_target_batch[0].data.numpy().transpose((1, 2, 0))
     validate_output_img = validate_output_batch[0].data.numpy().transpose((1, 2, 0))
     imgs = [validate_input_img, validate_target_img, validate_output_img]
     
 
-    #fig = plt.figure(figsize=(18, 6))
-    #columns = 3
-    #rows = 1
-    #for i in range(columns * rows):
-    #    fig.add_subplot(rows, columns, i+1)
-    #    plt.imshow(imgs[i][:, :, 0])
-    #plt.show()
-
-    plt.imshow(imgs[2][:, :, 0])
-    print(imgs[2])
+    fig = plt.figure(figsize=(18, 6))
+    columns = 3
+    rows = 1
+    for i in range(columns * rows):
+       fig.add_subplot(rows, columns, i+1)
+       plt.imshow(imgs[i][:, :, 0])
     plt.show()
+
+    # plt.imshow(imgs[2][:, :, 0])
+    # print(imgs[2])
+    # plt.show()
 
     #plt.imshow([imgs[2]])

@@ -20,8 +20,12 @@ import thermal_data_loader
 # All parameters are assigned in "config.py"
 
 # Initialize dataset for train and test data
-train_dataset = thermal_data_loader.Thermal_RGB(cfg.data_folder)
-test_dataset = thermal_data_loader.Thermal_RGB(cfg.data_folder)
+train_dataset = thermal_data_loader.Thermal_RGB(
+    root_dir=cfg.data_folder,
+    transform=cfg.transform)
+test_dataset = thermal_data_loader.Thermal_RGB(
+    root_dir=cfg.data_folder,
+    transform=cfg.transform)
 
 # Initialize data loaders for train and test dataset
 train_loader = torch.utils.data.DataLoader(
