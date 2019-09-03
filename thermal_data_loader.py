@@ -37,8 +37,8 @@ class Thermal_RGB(Dataset):
         """.
         """
         self.root_dir = root_dir
-        thermal_dir   = os.listdir(os.path.join(root_dir, 'thermal_1'))
-        rgb_dir = os.listdir(os.path.join(root_dir, 'rgb_1'))
+        thermal_dir   = os.listdir(os.path.join(root_dir, 'thermal'))
+        rgb_dir = os.listdir(os.path.join(root_dir, 'rgb'))
         self.images = [name.strip('.TIFF') for name in thermal_dir]
         self.transform = transform
 
@@ -55,7 +55,6 @@ class Thermal_RGB(Dataset):
         rgb_img = (rgb_img - np.mean(rgb_img)) / np.std(rgb_img)
 
         sample = {'input_image': rgb_img[np.newaxis, ...], 'output_image': thermal_img[np.newaxis, ...]}
-        print(sample['input_image'].shape)
 
         return sample
 
