@@ -12,7 +12,6 @@ def logical_numerical_sort(elem):
 
 
 def recov_from_ckpt():
-
     if os.path.exists(cfg.ckpt_folder):
         data_list = os.listdir(cfg.ckpt_folder)
         extension = '.pt'

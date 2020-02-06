@@ -15,8 +15,7 @@ loss_folder = "loss"
 
 # Dataset
 transform = transforms.Compose([
-   transforms.ToTensor(),
-   ])
+   transforms.ToTensor()])
 num_workers = 4
 
 # Model

@@ -11,14 +11,6 @@ import thermal_data_loader
 
 [model, saved_epoch] = functions.recov_from_ckpt()
 
-print(model.parameters())
-for ele in model.parameters():
-
-    print(ele)
-
-input()
-
-
 # Initialize data loader
 # validate_dataset = classes.ImageDataset(
 #     data_folder=cfg.data_folder, 
